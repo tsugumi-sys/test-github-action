@@ -23,10 +23,10 @@ jobs:
           echo ${{ github.base_ref }}
           echo ${{ github.base_ref == 'staging' }}
           echo ${{ github.base_ref == 'main' }}
-          if [ ${{ github.base_ref == 'staging' }} ]; then
+          if [ ${{ github.base_ref }} == 'staging' ]; then
             echo "environment=staging" >> "$GITHUB_OUTPUT"
             echo "im in staging!"
-          elif [ ${{ github.base_ref == 'main' }} ]; then
+          elif [ ${{ github.base_ref }}  == 'main' ]; then
             echo "environment=production" >> "$GITHUB_OUTPUT"
             echo "im in production!"
           else
