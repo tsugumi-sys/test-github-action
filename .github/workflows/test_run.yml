@@ -17,13 +17,12 @@ jobs:
     steps:
       - id: extract_env
         run: |
-          echo ${{ github.base_ref }}
-          echo ${{ github.head_ref }}
-
-          # if [ ${{ github.base_ref == 'staging' }} ]; then
-          #   echo "environment=staging" >> "$GITHUB_OUTPUT"
-          # elif [ ${{ github.base_ref == 'main' }} ]; then
-          #   echo "environment=production" >> "$GITHUB_OUTPUT"
-          # else
-          #   echo "environment=other" >> "$GITHUB_OUTPUT"
-          # fi
+          if [ ${{ github.base_ref == 'staging' }} ]; then
+            echo "environment=staging" >> "$GITHUB_OUTPUT"
+            echo "im in staging!"
+          elif [ ${{ github.base_ref == 'main' }} ]; then
+            echo "environment=production" >> "$GITHUB_OUTPUT"
+            echo "im in production!"
+          else
+            echo "environment=other" >> "$GITHUB_OUTPUT"
+          fi
