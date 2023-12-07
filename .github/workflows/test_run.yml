@@ -1,0 +1,27 @@
+---
+name: test
+
+on:
+  pull_request:
+    types: [ opened, synchronize ]
+  push:
+      branches:
+        - main
+        - staging
+
+jobs:
+  extract_environment:
+    outputs:
+      environment: ${{ steps.extract_env.outputs.environment }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: extract_env
+        run: |
+          echo github.base_ref
+          # if [ ${{ github.base_ref == 'staging' }} ]; then
+          #   echo "environment=staging" >> "$GITHUB_OUTPUT"
+          # elif [ ${{ github.base_ref == 'main' }} ]; then
+          #   echo "environment=production" >> "$GITHUB_OUTPUT"
+          # else
+          #   echo "environment=other" >> "$GITHUB_OUTPUT"
+          # fi
